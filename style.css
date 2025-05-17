@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --bg-pattern-size: 180px;
+}
+
+* {
+    margin: 0;
+    font-size: 18px;
+
+    font-family: "Roboto", sans-serif;
+    font-variation-settings: 
+        "wdth 100";
+}
+
+body {
+    background: url(assets/laktospåse_tile_2.png);
+    display: grid;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.background-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    background: url(assets/laktospåse_tile_1.png);
+    background-size: 180px 180px;
+
+    opacity: .4;
+    z-index: -999;
+}
+
+.main {
+    justify-self: center;
+    align-self: center;
+
+    padding: 3rem;
+    border-radius: 3rem;
+
+    background: #fff;
+}
+
+.q-title {
+    /* ... */
+
+    > span {
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+}
+
+svg.secret {
+    position: absolute;
+
+    left: calc(var(--bg-pattern-size) * 7);
+
+    width: var(--bg-pattern-size);
+    height: var(--bg-pattern-size);
+
+    transform: translate(50%, 50%) scale(100%);
+    
+    > path {
+        cursor: pointer;
+        fill: transparent;
+    }
+}
+
+div.secret {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: calc(100vh + 100px);
+    left: 0px;
+    background: #f1e4c8;
+    visibility: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        background-image: url(assets/wave.svg);
+        top: -100px;
+        left: 0;
+        height: 100px;
+        width: 100%;
+        /*animation: waveMotion 3s linear infinite;*/
+    }
+}
+
+@keyframes slideUp {
+    from { 
+        transform: translateY(0);
+    }
+    to { 
+        transform: translateY(calc(-100% - 100px)); 
+    }
+  }
+  
+.slideUp {
+    visibility: visible !important;
+    animation: slideUp 3s linear forwards, fadeOut 2s linear forwards;
+    animation-delay: 0s, 3.2s;
+
+    &::before {
+        animation: waveMotion 3s linear forwards;
+    }
+}
+  
+@keyframes waveMotion {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: -220%;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
